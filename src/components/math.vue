@@ -60,6 +60,7 @@ export default defineComponent({
 					}
 				}
 			})
+			val = +val.toFixed(2)
 			return val
 		}
 	},
@@ -89,7 +90,6 @@ export default defineComponent({
 
 .math__symbol,
 .math__result {
-	font-size: 22px;
 	padding: 0 10px;
 }
 

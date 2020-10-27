@@ -62,10 +62,12 @@ body {
 	justify-content: center;
 	cursor: pointer;
 	margin-top: 15px;
+	border: none;
+	outline: none;
+	background: none;
 }
 
 .btn-remove {
-	color: #fff;
-	background: #9e2929;
+
 }
 </style>
