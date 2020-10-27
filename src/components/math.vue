@@ -34,10 +34,12 @@ export default defineComponent({
 				{
 					numerator: 1,
 					denominator: 2,
+					operator: '+',
 				},
 				{
 					numerator: 1,
 					denominator: 2,
+					operator: '+',
 				},
 			]
 		}
@@ -51,7 +53,11 @@ export default defineComponent({
 				const value = numerator / denominator
 
 				if (!isNaN(value) && value !== Infinity) {
-					val += value
+					switch (fraction.operator) {
+						case '+': val += value; break;
+						case '-': val -= value; break;
+						default: val += value;
+					}
 				}
 			})
 			return val
@@ -62,6 +68,7 @@ export default defineComponent({
 			this.fractions.push({
 				numerator: 0,
 				denominator: 0,
+				operator: '+',
 			})
 		},
 
@@ -88,11 +95,5 @@ export default defineComponent({
 
 .math__add {
 	margin-top: 15px;
-}
-
-.math__fraction {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 }
 </style>

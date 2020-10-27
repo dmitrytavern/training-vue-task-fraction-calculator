@@ -1,13 +1,20 @@
 <template>
 
-	<div class="math__fraction">
-		<div class="math__fraction-wrapper">
-			<input type="number" v-model.number="fraction.numerator">
-			<span></span>
-			<input type="number" v-model.number="fraction.denominator">
+	<div class="math__fraction-container">
+
+		<div class="math__fraction-operator">
+			<select class="math__fraction-input select" v-model="fraction.operator">
+				<option value="+">+</option>
+				<option value="-">-</option>
+			</select>
 		</div>
 
-		<button class="btn btn-remove" @click="remove" v-if="canRemove">-</button>
+		<div class="math__fraction">
+			<input class="math__fraction-input" type="number" v-model.number="fraction.numerator">
+			<span></span>
+			<input class="math__fraction-input" type="number" v-model.number="fraction.denominator">
+			<button class="btn btn-remove" @click="remove" v-if="canRemove">-</button>
+		</div>
 	</div>
 
 </template>
@@ -26,28 +33,25 @@ export default defineComponent({
 		remove() {
 			this.$emit('remove', this.index)
 		},
-	}
+	},
 })
 </script>
 
 <style scoped>
-.math__fraction .math__fraction-wrapper {
+.math__fraction {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.math__fraction-container {
+	display: flex;
+	align-items: center;
 	padding: 0 10px;
-	position: relative;
 }
-.math__fraction:not(:first-child) > .math__fraction-wrapper {
-	padding-left: 20px;
-}
-.math__fraction:not(:first-child) > .math__fraction-wrapper:after {
-	content: '+';
-	position: absolute;
-	top: 50%;
-	left: 0;
-	transform: translateY(-50%);
-	font-size: 22px;
+
+.math__fraction-operator {
+	margin-right: 10px;
 }
 
 .math__fraction span {
@@ -63,10 +67,14 @@ input::-webkit-inner-spin-button {
 	margin: 0;
 }
 
-.math__fraction input {
+.math__fraction-input {
 	width: 30px;
 	height: 30px;
 	padding: 5px;
 	-moz-appearance: textfield;
+}
+
+.math__fraction-input.select {
+	width: 40px;
 }
 </style>
