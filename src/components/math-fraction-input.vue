@@ -1,5 +1,11 @@
 <template>
-	<input class="math__fraction-input" type="number" :style="stylesInput" :value="modelValue" @input="update($event.target.value)">
+	<input
+			class="math__fraction-input"
+			type="number"
+			:style="stylesInput"
+			:value="modelValue"
+			@input="update($event)"
+	>
 </template>
 
 <script lang="ts">
@@ -8,11 +14,14 @@ import { defineComponent } from 'vue'
 export default defineComponent({
 	name: "math-fraction",
 	props: {
-		modelValue: Number,
+		modelValue: {
+			type: Number,
+			default: 0,
+		},
 	},
 	methods: {
-		update(newVal: number) {
-			this.$emit('update:modelValue', +newVal)
+		update($event: InputEvent) {
+			this.$emit('update:modelValue', +($event.target as HTMLInputElement).value)
 		}
 	},
 	computed: {

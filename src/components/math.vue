@@ -32,13 +32,13 @@ export default defineComponent({
 		return {
 			fractions: [
 				{
-					numerator: 1,
-					denominator: 2,
+					numerator: 0,
+					denominator: 0,
 					operator: '+',
 				},
 				{
-					numerator: 1,
-					denominator: 2,
+					numerator: 0,
+					denominator: 0,
 					operator: '+',
 				},
 			]
