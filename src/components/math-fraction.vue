@@ -10,9 +10,9 @@
 		</div>
 
 		<div class="math__fraction">
-			<input class="math__fraction-input" type="number" :style="stylesNumeratorInputSize" v-model.number="fraction.numerator">
+			<MathFractionInput v-model="fraction.numerator" />
 			<span></span>
-			<input class="math__fraction-input" type="number" :style="stylesDenominatorInputSize" v-model.number="fraction.denominator">
+			<MathFractionInput v-model="fraction.denominator" />
 
 			<button class="math__fraction-btn btn btn-remove" @click="remove" v-if="canRemove">
 				<svg>
@@ -26,9 +26,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import MathFractionInput from '@/components/math-fraction-input.vue'
 
 export default defineComponent({
 	name: "math-fraction",
+	components: {
+		MathFractionInput
+	},
 	props: {
 		fraction: Object,
 		index: Number,
@@ -39,21 +43,6 @@ export default defineComponent({
 			this.$emit('remove', this.index)
 		},
 	},
-	computed: {
-		stylesNumeratorInputSize(): object {
-			const val = this.fraction.numerator.toString().length
-			return {
-				width: val+1+'em'
-			}
-		},
-
-		stylesDenominatorInputSize(): object {
-			const val = this.fraction.denominator.toString().length
-			return {
-				width: val+1+'em'
-			}
-		}
-	}
 })
 </script>
 
@@ -85,16 +74,6 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
-}
-
-.math__fraction-input {
-	border: none;
-	outline: none;
-	background: none;
-	height: 30px;
-	padding: 5px;
-	-moz-appearance: textfield;
-	text-align: center;
 }
 
 .math__fraction-select {
