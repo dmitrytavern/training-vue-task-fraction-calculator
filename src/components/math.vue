@@ -11,12 +11,13 @@
 				v-on:remove="removeFraction"
 		/>
 
-		<div class="math__symbol">=</div>
-		<div class="math__result">{{ math }}</div>
-
 	</div>
 
-	<button class="math__add" @click="addFraction">Add fraction</button>
+	<div class="math__result">
+		Result: <b>{{ math }}</b>
+	</div>
+
+	<button class="math__btn-add btn" @click="addFraction">Add fraction</button>
 </template>
 
 <script lang="ts">
@@ -88,12 +89,18 @@ export default defineComponent({
 	margin-top: 30px;
 }
 
-.math__symbol,
 .math__result {
-	padding: 0 10px;
+	margin-top: 15px;
 }
 
-.math__add {
+.math__btn-add {
 	margin-top: 15px;
+	border: 1px solid #eee;
+	padding: 7px 15px;
+	color: #242424;
+	transition: all .180s;
+}
+.math__btn-add:hover {
+	background: #eeeeee;
 }
 </style>

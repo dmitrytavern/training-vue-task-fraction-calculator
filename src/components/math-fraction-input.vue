@@ -1,7 +1,9 @@
 <template>
 	<input
 			class="math__fraction-input"
-			:class="{'is-error': hasError}"
+			:class="{
+				'is-error': hasError
+			}"
 			type="number"
 			:style="styles"
 			:value="modelValue"
@@ -10,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed, watch, toRefs } from 'vue'
+import { defineComponent, ref, computed, watch, toRefs } from 'vue'
 
 export default defineComponent({
 	name: "math-fraction",
@@ -22,7 +24,7 @@ export default defineComponent({
 	},
 	setup(props, { emit }) {
 		const { modelValue } = toRefs(props)
-		const hasError = ref(false)
+		const hasError 		= ref(false)
 
 		const update = ($event: InputEvent) => {
 			emit('update:modelValue', +($event.target as HTMLInputElement).value)

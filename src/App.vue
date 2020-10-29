@@ -1,5 +1,6 @@
 <template>
 	<div class="app">
+		<h1>Calc Fractions App</h1>
 		<div class="container">
 			<Math />
 		</div>
@@ -39,35 +40,26 @@ body {
 	height: 100%;
 }
 
+h1 {
+	font-size: 24px;
+}
+
 .app {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	height: 100%;
+	flex-direction: column;
+	padding-top: 180px;
 }
 
 .container {
-	min-width: 360px;
-	min-height: 250px;
-	background: #f7f7f7;
+	margin-top: 30px;
 }
 
-
 .btn {
-	width: 20px;
-	height: 20px;
 	border-radius: 4px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	cursor: pointer;
-	margin-top: 15px;
 	border: none;
 	outline: none;
 	background: none;
-}
-
-.btn-remove {
-
 }
 </style>
