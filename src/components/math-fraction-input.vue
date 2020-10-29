@@ -1,6 +1,7 @@
 <template>
 	<input
 			class="math__fraction-input"
+			:class="{'is-error': hasError}"
 			type="number"
 			:style="stylesInput"
 			:value="modelValue"
@@ -18,6 +19,16 @@ export default defineComponent({
 			type: Number,
 			default: 0,
 		},
+	},
+	data() {
+		return {
+			hasError: false
+		}
+	},
+	watch: {
+		'modelValue'(newVal: number) {
+			this.hasError = isNaN(newVal)
+		}
 	},
 	methods: {
 		update($event: InputEvent) {
@@ -44,4 +55,7 @@ export default defineComponent({
 	text-align: center;
 }
 
+.math__fraction-input.is-error {
+	color: #6d1212;
+}
 </style>
