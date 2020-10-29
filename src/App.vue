@@ -1,6 +1,6 @@
 <template>
 	<div class="app">
-		<h1>Calc Fractions App</h1>
+		<h1>Fraction calculator</h1>
 		<div class="container">
 			<Math />
 		</div>
