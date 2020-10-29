@@ -3,14 +3,14 @@
 			class="math__fraction-input"
 			:class="{'is-error': hasError}"
 			type="number"
-			:style="stylesInput"
+			:style="styles"
 			:value="modelValue"
 			@input="update($event)"
 	>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import {defineComponent, ref, computed, watch, toRefs } from 'vue'
 
 export default defineComponent({
 	name: "math-fraction",
@@ -20,27 +20,30 @@ export default defineComponent({
 			default: 0,
 		},
 	},
-	data() {
-		return {
-			hasError: false
+	setup(props, { emit }) {
+		const { modelValue } = toRefs(props)
+		const hasError = ref(false)
+
+		const update = ($event: InputEvent) => {
+			emit('update:modelValue', +($event.target as HTMLInputElement).value)
 		}
-	},
-	watch: {
-		'modelValue'(newVal: number) {
-			this.hasError = isNaN(newVal)
-		}
-	},
-	methods: {
-		update($event: InputEvent) {
-			this.$emit('update:modelValue', +($event.target as HTMLInputElement).value)
-		}
-	},
-	computed: {
-		stylesInput(): object {
-			const val = this.modelValue.toString().length
+
+		const styles = computed(() => {
+			const val = modelValue.value.toString().length
 			return { width: val+1+'em' }
-		},
-	}
+		})
+
+		watch(modelValue, (newVal) => {
+			hasError.value = isNaN(newVal)
+		})
+
+		return {
+			update,
+			styles,
+			hasError,
+			modelValue,
+		}
+	},
 })
 </script>
 
